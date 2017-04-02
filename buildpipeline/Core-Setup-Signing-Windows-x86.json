@@ -17,7 +17,62 @@
         "workingFolder": "",
         "failOnStandardError": "false"
       }
-    },
+    }, {
+			"enabled": true,
+			"continueOnError": false,
+			"alwaysRun": false,
+			"displayName": "Run git",
+			"timeoutInMinutes": 0,
+			"task": {
+				"id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+				"versionSpec": "1.*",
+				"definitionType": "task"
+			},
+			"inputs": {
+				"filename": "git",
+				"arguments": "clone https://devdiv.visualstudio.com/DevDiv/_git/DotNet-Core-Release-Tools",
+				"workingFolder": "",
+				"failOnStandardError": "false"
+			}
+		}, {
+			"enabled": true,
+			"continueOnError": false,
+			"alwaysRun": false,
+			"displayName": "PowerShell Script",
+			"timeoutInMinutes": 0,
+			"task": {
+				"id": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+				"versionSpec": "1.*",
+				"definitionType": "task"
+			},
+			"inputs": {
+				"scriptType": "filePath",
+				"scriptName": "DotNet-Core-Release-Tools/msbuildrun.ps1",
+				"arguments": "/t:DownloadFromAzure /p:ContainerName=$(CoreFxAzureContainer) /p:DownloadDirectory=AzureCoreFxDownload /p:AccountName=$(AzureAccountName) /p:AccessToken=$(AzureAccessToken)",
+				"inlineScript": "# You can write your powershell scripts inline here. \n# You can also pass predefined and custom variables to this scripts using arguments\n\n Write-Host \"Hello World\"",
+				"workingFolder": "",
+				"failOnStandardError": "true"
+			}
+		}, {
+			"enabled": true,
+			"continueOnError": false,
+			"alwaysRun": false,
+			"displayName": "PowerShell Script",
+			"timeoutInMinutes": 0,
+			"task": {
+				"id": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+				"versionSpec": "1.*",
+				"definitionType": "task"
+			},
+			"inputs": {
+				"scriptType": "filePath",
+				"scriptName": "DotNet-Core-Release-Tools/msbuildrun.ps1",
+				"arguments": "/t:AddSourceToNuGetConfig /p:NuGetConfigFile=NuGet.config /p:SourceName=LocalDownload /p:SourcePath=$(Build.SourcesDirectory)\\AzureCoreFxDownload",
+				"inlineScript": "# You can write your powershell scripts inline here. \n# You can also pass predefined and custom variables to this scripts using arguments\n\n Write-Host \"Hello World\"",
+				"workingFolder": "",
+				"failOnStandardError": "true"
+			}
+		},
     {
       "enabled": true,
       "continueOnError": false,
@@ -440,6 +495,17 @@
     },
     "system.debug": {
       "value": "false"
+    },
+    "CoreFxAzureContainer": {
+      "value": "ENV_VAR_EMPTY_WORKAROUND",
+      "allowOverride": true
+    },
+    "AzureAccountName": {
+      "value": "ENV_VAR_EMPTY_WORKAROUND"
+    },
+    "AzureAccessToken": {
+      "value": null,
+			"isSecret": true
     }
   },
   "demands": [
