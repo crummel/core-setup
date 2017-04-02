@@ -35,26 +35,6 @@
 				"failOnStandardError": "false"
 			}
 		},
-     {
-			"enabled": true,
-			"continueOnError": false,
-			"alwaysRun": false,
-			"displayName": "PowerShell Script",
-			"timeoutInMinutes": 0,
-			"task": {
-				"id": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
-				"versionSpec": "1.*",
-				"definitionType": "task"
-			},
-			"inputs": {
-				"scriptType": "filePath",
-				"scriptName": "DotNet-Core-Release-Tools/msbuildrun.ps1",
-				"arguments": "/t:AddSourceToNuGetConfig /p:NuGetConfigFile=NuGet.config /p:SourceName=LocalDownload /p:SourcePath=$(Build.SourcesDirectory)\\AzureCoreFxDownload",
-				"inlineScript": "# You can write your powershell scripts inline here. \n# You can also pass predefined and custom variables to this scripts using arguments\n\n Write-Host \"Hello World\"",
-				"workingFolder": "",
-				"failOnStandardError": "true"
-			}
-		},
     {
       "enabled": true,
       "continueOnError": false,
@@ -126,6 +106,26 @@
 				"scriptType": "filePath",
 				"scriptName": "DotNet-Core-Release-Tools/msbuildrun.ps1",
 				"arguments": "-RepositoryRoot . -Target DownloadFromAzure -Properties ContainerName=$(CoreFxAzureContainer),DownloadDirectory=AzureCoreFxDownload,:AccountName=$(AzureAccountName),AccessToken=$(AzureAccessToken)",
+				"inlineScript": "# You can write your powershell scripts inline here. \n# You can also pass predefined and custom variables to this scripts using arguments\n\n Write-Host \"Hello World\"",
+				"workingFolder": "",
+				"failOnStandardError": "true"
+			}
+		},
+     {
+			"enabled": true,
+			"continueOnError": false,
+			"alwaysRun": false,
+			"displayName": "PowerShell Script",
+			"timeoutInMinutes": 0,
+			"task": {
+				"id": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+				"versionSpec": "1.*",
+				"definitionType": "task"
+			},
+			"inputs": {
+				"scriptType": "filePath",
+				"scriptName": "DotNet-Core-Release-Tools/msbuildrun.ps1",
+				"arguments": "-RepositorRoot . -Target AddSourceToNuGetConfig -Properties NuGetConfigFile=NuGet.config,SourceName=LocalDownload,SourcePath=$(Build.SourcesDirectory)\\AzureCoreFxDownload",
 				"inlineScript": "# You can write your powershell scripts inline here. \n# You can also pass predefined and custom variables to this scripts using arguments\n\n Write-Host \"Hello World\"",
 				"workingFolder": "",
 				"failOnStandardError": "true"
