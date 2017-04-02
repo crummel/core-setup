@@ -534,19 +534,19 @@
   "repository": {
     "properties": {
       "connectedServiceId": "f4c31735-42d2-4c3a-bc47-7ac06fd0dccc",
-      "apiUrl": "https://api.github.com/repos/dotnet/core-setup",
-      "branchesUrl": "https://api.github.com/repos/dotnet/core-setup/branches",
+      "apiUrl": "https://api.github.com/repos/crummel/dotnet_core-setup",
+      "branchesUrl": "https://api.github.com/repos/crummel/dotnet_core-setup/branches",
       "cloneUrl": "https://github.com/crummel/dotnet_core-setup.git",
-      "refsUrl": "https://api.github.com/repos/dotnet/core-setup/git/refs",
+      "refsUrl": "https://api.github.com/repos/crummel/dotnet_core-setup/git/refs",
       "gitLfsSupport": "false",
       "skipSyncSource": "false",
       "fetchDepth": "0",
       "cleanOptions": "0"
     },
-    "id": "https://github.com/dotnet/core-setup.git",
+    "id": "https://github.com/crummel/dotnet_core-setup.git",
     "type": "GitHub",
-    "name": "dotnet/core-setup",
-    "url": "https://github.com/dotnet/core-setup.git",
+    "name": "crummel/dotnet_core-setup",
+    "url": "https://github.com/crummel/dotnet_core-setup.git",
     "defaultBranch": "release/1.0.0",
     "clean": "true",
     "checkoutSubmodules": false
