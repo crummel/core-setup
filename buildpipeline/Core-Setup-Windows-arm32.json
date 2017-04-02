@@ -30,7 +30,7 @@
 			},
 			"inputs": {
 				"filename": "git",
-				"arguments": "clone https://devdiv.visualstudio.com/DevDiv/_git/DotNet-Core-Release-Tools",
+				"arguments": "clone $(ReleaseToolsGitUrl)",
 				"workingFolder": "",
 				"failOnStandardError": "false"
 			}
@@ -172,6 +172,13 @@
     "AzureAccessToken": {
       "value": null,
 			"isSecret": true
+    },
+    "VsoPassword": {
+      "value": null,
+			"isSecret": true
+    },
+    "ReleaseToolsGitUrl": {
+      "value": "https://dn-bot:$(VsoPassword)@devdiv.visualstudio.com/DevDiv/_git/DotNet-Core-Release-Tools"
     }
   },
   "demands": [
