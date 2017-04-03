@@ -170,7 +170,7 @@
     {
       "enabled": true,
       "continueOnError": true,
-      "alwaysRun": false,
+      "alwaysRun": true,
       "displayName": "rm",
       "timeoutInMinutes": 0,
       "task": {
@@ -188,7 +188,7 @@
     {
       "enabled": true,
       "continueOnError": true,
-      "alwaysRun": false,
+      "alwaysRun": true,
       "displayName": "rm",
       "timeoutInMinutes": 0,
       "task": {
