@@ -121,10 +121,10 @@
         "definitionType": "task"
       },
       "inputs": {
-        "scriptPath": "msbuildrun.sh",
+        "scriptPath": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools/msbuildrun.sh",
         "args": "--target DownloadFromAzure --properties ContainerName=$(CoreFxAzureContainer),DownloadDirectory=$(Build.SourcesDirectory)/AzureCoreFxDownload,AccountName=$(AzureAccountName),AccessToken=$(AzureAccessToken)",
         "disableAutoCwd": "false",
-        "cwd": "DotNet-Core-Release-Tools",
+        "cwd": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools",
         "failOnStandardError": "false"
       }
     },
@@ -140,10 +140,10 @@
         "definitionType": "task"
       },
       "inputs": {
-        "scriptPath": "msbuildrun.sh",
+        "scriptPath": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools/msbuildrun.sh",
         "args": "--target AddSourceToNuGetConfig --properties NuGetConfigFile=$(Build.SourcesDirectory)/NuGet.Config,SourceName=LocalDownload,SourcePath=$(Build.SourcesDirectory)/AzureCoreFxDownload/Release",
         "disableAutoCwd": "false",
-        "cwd": "DotNet-Core-Release-Tools",
+        "cwd": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools",
         "failOnStandardError": "false"
       }
     },
