@@ -22,18 +22,35 @@
       "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
-      "displayName": "Shell Script build.sh",
+      "displayName": "git clone",
       "timeoutInMinutes": 0,
       "task": {
-        "id": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
-        "versionSpec": "2.*",
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
         "definitionType": "task"
       },
       "inputs": {
-        "scriptPath": "build.sh",
-        "args": "$(BuildArguments)",
-        "disableAutoCwd": "false",
-        "cwd": "",
+        "filename": "git",
+        "arguments": "clone $(ReleaseToolsGitUrl)",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "mkdir",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "mkdir",
+        "arguments": "$(Build.SourcesDirectory)/AzureCoreFxDownload",
+        "workingFolder": "",
         "failOnStandardError": "false"
       }
     },
@@ -58,6 +75,63 @@
     },
     {
       "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "Shell Script msbuildrun.sh",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
+        "versionSpec": "2.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "scriptPath": "msbuildrun.sh",
+        "args": "--target DownloadFromAzure --properties ContainerName=$(CoreFxAzureContainer),DownloadDirectory=$(Build.SourcesDirectory)/AzureCoreFxDownload,AccountName=$(AzureAccountName),AccessToken=$(AzureAccessToken)",
+        "disableAutoCwd": "false",
+        "cwd": "DotNet-Core-Release-Tools",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "Shell Script msbuildrun.sh",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
+        "versionSpec": "2.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "scriptPath": "msbuildrun.sh",
+        "args": "--target AddSourceToNuGetConfig --properties NuGetConfigFile=$(Build.SourcesDirectory)/NuGet.Config,SourceName=LocalDownload,SourcePath=$(Build.SourcesDirectory)/AzureCoreFxDownload/Release",
+        "disableAutoCwd": "false",
+        "cwd": "DotNet-Core-Release-Tools",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "Shell Script build.sh",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
+        "versionSpec": "2.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "scriptPath": "build.sh",
+        "args": "$(BuildArguments)",
+        "disableAutoCwd": "false",
+        "cwd": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
       "continueOnError": true,
       "alwaysRun": true,
       "displayName": "Clean up Docker images and containers",
@@ -70,6 +144,42 @@
       "inputs": {
         "filename": "perl",
         "arguments": "pkg/Tools/scripts/docker/cleanup-docker.sh",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": true,
+      "alwaysRun": false,
+      "displayName": "rm",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "rm",
+        "arguments": "-rf $(Build.SourcesDirectory)/AzureCoreFxDownload",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": true,
+      "alwaysRun": false,
+      "displayName": "rm",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "rm",
+        "arguments": "-rf DotNet-Core-Release-Tools",
         "workingFolder": "",
         "failOnStandardError": "false"
       }
@@ -140,6 +250,24 @@
     },
     "GITHUB_PASSWORD": {
       "value": "ENV_VAR_EMPTY_WORKAROUND"
+    },
+    "CoreFxAzureContainer": {
+      "value": "ENV_VAR_EMPTY_WORKAROUND",
+      "allowOverride": true
+    },
+    "AzureAccountName": {
+      "value": "ENV_VAR_EMPTY_WORKAROUND"
+    },
+    "AzureAccessToken": {
+      "value": null,
+			"isSecret": true
+    },
+    "VsoPassword": {
+      "value": null,
+			"isSecret": true
+    },
+    "ReleaseToolsGitUrl": {
+      "value": "https://dn-bot:$(VsoPassword)@devdiv.visualstudio.com/DevDiv/_git/DotNet-Core-Release-Tools"
     }
   },
   "demands": [

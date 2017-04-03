@@ -138,7 +138,7 @@
 			"inputs": {
 				"scriptType": "filePath",
 				"scriptName": "DotNet-Core-Release-Tools/msbuildrun.ps1",
-				"arguments": "-RepositoryRoot $(Build.SourcesDirectory)\\DotNet-Core-Release-Tools -Target AddSourceToNuGetConfig -Properties NuGetConfigFile=$(Build.SourcesDirectory)\\NuGet.Config,SourceName=LocalDownload,SourcePath=$(Build.SourcesDirectory)\\AzureCoreFxDownload",
+				"arguments": "-RepositoryRoot $(Build.SourcesDirectory)\\DotNet-Core-Release-Tools -Target AddSourceToNuGetConfig -Properties NuGetConfigFile=$(Build.SourcesDirectory)\\NuGet.Config,SourceName=LocalDownload,SourcePath=$(Build.SourcesDirectory)\\AzureCoreFxDownload\\Release",
 				"inlineScript": "# You can write your powershell scripts inline here. \n# You can also pass predefined and custom variables to this scripts using arguments\n\n Write-Host \"Hello World\"",
 				"workingFolder": "",
 				"failOnStandardError": "true"
