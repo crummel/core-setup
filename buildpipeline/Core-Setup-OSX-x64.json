@@ -142,6 +142,24 @@
     },
     "GITHUB_PASSWORD": {
       "value": "ENV_VAR_EMPTY_WORKAROUND"
+    },
+    "CoreFxAzureContainer": {
+      "value": "ENV_VAR_EMPTY_WORKAROUND",
+      "allowOverride": true
+    },
+    "AzureAccountName": {
+      "value": "ENV_VAR_EMPTY_WORKAROUND"
+    },
+    "AzureAccessToken": {
+      "value": null,
+			"isSecret": true
+    },
+    "VsoPassword": {
+      "value": null,
+			"isSecret": true
+    },
+    "ReleaseToolsGitUrl": {
+      "value": "https://dn-bot:$(VsoPassword)@devdiv.visualstudio.com/DevDiv/_git/DotNet-Core-Release-Tools"
     }
   },
   "demands": [
