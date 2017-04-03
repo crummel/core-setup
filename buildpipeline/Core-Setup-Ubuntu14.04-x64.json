@@ -73,7 +73,7 @@
       }
     },
     {
-      "enabled": true,
+      "enabled": false,
       "continueOnError": true,
       "alwaysRun": true,
       "displayName": "Initialize tools",
@@ -92,7 +92,7 @@
       }
     },
     {
-      "enabled": true,
+      "enabled": false,
       "continueOnError": true,
       "alwaysRun": true,
       "displayName": "rm",
