@@ -19,7 +19,7 @@
       }
     },
     {
-      "enabled": false,
+      "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
       "displayName": "git clone",
@@ -37,7 +37,7 @@
       }
     },
     {
-      "enabled": false,
+      "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
       "displayName": "git checkout",
@@ -55,7 +55,7 @@
       }
     },
     {
-      "enabled": false,
+      "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
       "displayName": "mkdir",
@@ -73,26 +73,7 @@
       }
     },
     {
-      "enabled": false,
-      "continueOnError": true,
-      "alwaysRun": true,
-      "displayName": "Initialize tools",
-      "timeoutInMinutes": 0,
-      "task": {
-        "id": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
-        "versionSpec": "2.*",
-        "definitionType": "task"
-      },
-      "inputs": {
-        "scriptPath": "pkg/init-tools.sh",
-        "args": "",
-        "disableAutoCwd": "false",
-        "cwd": "",
-        "failOnStandardError": "false"
-      }
-    },
-    {
-      "enabled": false,
+      "enabled": true,
       "continueOnError": true,
       "alwaysRun": true,
       "displayName": "rm",
@@ -110,7 +91,7 @@
       }
     },
     {
-      "enabled": false,
+      "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
       "displayName": "Shell Script msbuildrun.sh",
@@ -129,7 +110,7 @@
       }
     },
     {
-      "enabled": false,
+      "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
       "displayName": "Shell Script msbuildrun.sh",
@@ -144,6 +125,25 @@
         "args": "--target AddSourceToNuGetConfig --properties NuGetConfigFile=$(Build.SourcesDirectory)/NuGet.Config,SourceName=LocalDownload,SourcePath=$(Build.SourcesDirectory)/AzureCoreFxDownload/Release",
         "disableAutoCwd": "false",
         "cwd": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": true,
+      "alwaysRun": true,
+      "displayName": "Initialize tools",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
+        "versionSpec": "2.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "scriptPath": "pkg/init-tools.sh",
+        "args": "",
+        "disableAutoCwd": "false",
+        "cwd": "",
         "failOnStandardError": "false"
       }
     },
