@@ -129,6 +129,25 @@
 				"workingFolder": "",
 				"failOnStandardError": "true"
 			}
+		}, {
+			"enabled": true,
+			"continueOnError": false,
+			"alwaysRun": true,
+			"displayName": "PowerShell Script",
+			"timeoutInMinutes": 0,
+			"task": {
+				"id": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+				"versionSpec": "1.*",
+				"definitionType": "task"
+			},
+			"inputs": {
+				"scriptType": "inlineScript",
+				"scriptName": "",
+				"arguments": "",
+				"inlineScript": "gc NuGet.Config",
+				"workingFolder": "",
+				"failOnStandardError": "true"
+			}
 		}, 
     {
       "enabled": true,
