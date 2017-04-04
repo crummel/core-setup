@@ -197,7 +197,7 @@
       },
       "inputs": {
         "filename": "rm",
-        "arguments": "-rf DotNet-Core-Release-Tools",
+        "arguments": "-rf $(Build.SourcesDirectory)/DotNet-Core-Release-Tools",
         "workingFolder": "",
         "failOnStandardError": "false"
       }
