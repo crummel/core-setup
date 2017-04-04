@@ -22,6 +22,98 @@
       "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
+      "displayName": "git clone",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "git",
+        "arguments": "clone $(ReleaseToolsGitUrl)",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "git checkout",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "git",
+        "arguments": "checkout crummel/debug",
+        "workingFolder": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "mkdir",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "mkdir",
+        "arguments": "$(Build.SourcesDirectory)/AzureCoreFxDownload",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "Shell Script msbuildrun.sh",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
+        "versionSpec": "2.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "scriptPath": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools/msbuildrun.sh",
+        "args": "--target DownloadFromAzure --properties ContainerName=$(CoreFxAzureContainer),DownloadDirectory=$(Build.SourcesDirectory)/AzureCoreFxDownload,AccountName=$(AzureAccountName),AccessToken=$(AzureAccessToken)",
+        "disableAutoCwd": "false",
+        "cwd": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "Shell Script msbuildrun.sh",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
+        "versionSpec": "2.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "scriptPath": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools/msbuildrun.sh",
+        "args": "--target AddSourceToNuGetConfig --properties NuGetConfigFile=$(Build.SourcesDirectory)/NuGet.Config,SourceName=LocalDownload,SourcePath=./AzureCoreFxDownload/Release",
+        "disableAutoCwd": "false",
+        "cwd": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
       "displayName": "Shell Script build.sh",
       "timeoutInMinutes": 0,
       "task": {
@@ -70,6 +162,42 @@
       "inputs": {
         "filename": "perl",
         "arguments": "pkg/Tools/scripts/docker/cleanup-docker.sh",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": true,
+      "alwaysRun": true,
+      "displayName": "rm",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "rm",
+        "arguments": "-rf $(Build.SourcesDirectory)/AzureCoreFxDownload",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": true,
+      "alwaysRun": true,
+      "displayName": "rm",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "rm",
+        "arguments": "-rf DotNet-Core-Release-Tools",
         "workingFolder": "",
         "failOnStandardError": "false"
       }
@@ -152,6 +280,24 @@
     },
     "REPO_PASS": {
       "value": "ENV_VAR_EMPTY_WORKAROUND"
+    },
+    "CoreFxAzureContainer": {
+      "value": "ENV_VAR_EMPTY_WORKAROUND",
+      "allowOverride": true
+    },
+    "AzureAccountName": {
+      "value": "ENV_VAR_EMPTY_WORKAROUND"
+    },
+    "AzureAccessToken": {
+      "value": null,
+      "isSecret": true
+    },
+    "VsoPassword": {
+      "value": null,
+      "isSecret": true
+    },
+    "ReleaseToolsGitUrl": {
+      "value": "https://dn-bot:$(VsoPassword)@devdiv.visualstudio.com/DevDiv/_git/DotNet-Core-Release-Tools"
     }
   },
   "demands": [
@@ -179,18 +325,18 @@
   "repository": {
     "properties": {
       "connectedServiceId": "f4c31735-42d2-4c3a-bc47-7ac06fd0dccc",
-      "apiUrl": "https://api.github.com/repos/dotnet/core-setup",
-      "branchesUrl": "https://api.github.com/repos/dotnet/core-setup/branches",
-      "cloneUrl": "https://github.com/dotnet/core-setup.git",
-      "refsUrl": "https://api.github.com/repos/dotnet/core-setup/git/refs",
+      "apiUrl": "https://api.github.com/repos/crummel/dotnet_core-setup",
+      "branchesUrl": "https://api.github.com/repos/crummel/dotnet_core-setup/branches",
+      "cloneUrl": "https://github.com/crummel/dotnet_core-setup.git",
+      "refsUrl": "https://api.github.com/repos/crummel/dotnet_core-setup/git/refs",
       "gitLfsSupport": "false",
       "fetchDepth": "0"
     },
-    "id": "https://github.com/dotnet/core-setup.git",
+    "id": "https://github.com/crummel/dotnet_core-setup.git",
     "type": "GitHub",
-    "name": "dotnet/core-setup",
-    "url": "https://github.com/dotnet/core-setup.git",
-    "defaultBranch": "release/build_defs_1.1.0",
+    "name": "crummel/dotnet_core-setup",
+    "url": "https://github.com/crummel/dotnet_core-setup.git",
+    "defaultBranch": "release/1.1.0",
     "clean": "true",
     "checkoutSubmodules": false
   },
