@@ -141,7 +141,7 @@
       },
       "inputs": {
         "scriptPath": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools/msbuildrun.sh",
-        "args": "--target AddSourceToNuGetConfig --properties NuGetConfigFile=$(Build.SourcesDirectory)/NuGet.Config,SourceName=LocalDownload,SourcePath=$(Build.SourcesDirectory)/AzureCoreFxDownload/Release",
+        "args": "--target AddSourceToNuGetConfig --properties NuGetConfigFile=$(Build.SourcesDirectory)/NuGet.Config,SourceName=LocalDownload,SourcePath=./AzureCoreFxDownload/Release",
         "disableAutoCwd": "false",
         "cwd": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools",
         "failOnStandardError": "false"

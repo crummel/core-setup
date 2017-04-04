@@ -76,24 +76,6 @@
       "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
-      "displayName": "mkdir",
-      "timeoutInMinutes": 0,
-      "task": {
-        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
-        "versionSpec": "1.*",
-        "definitionType": "task"
-      },
-      "inputs": {
-        "filename": "mkdir",
-        "arguments": "$(Build.SourcesDirectory)/AzureCoreFxDownload",
-        "workingFolder": "",
-        "failOnStandardError": "false"
-      }
-    },
-    {
-      "enabled": true,
-      "continueOnError": false,
-      "alwaysRun": false,
       "displayName": "Shell Script msbuildrun.sh",
       "timeoutInMinutes": 0,
       "task": {
@@ -122,7 +104,7 @@
       },
       "inputs": {
         "scriptPath": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools/msbuildrun.sh",
-        "args": "--target AddSourceToNuGetConfig --properties NuGetConfigFile=$(Build.SourcesDirectory)/NuGet.Config,SourceName=LocalDownload,SourcePath=$(Build.SourcesDirectory)/AzureCoreFxDownload/Release",
+        "args": "--target AddSourceToNuGetConfig --properties NuGetConfigFile=$(Build.SourcesDirectory)/NuGet.Config,SourceName=LocalDownload,SourcePath=./AzureCoreFxDownload/Release",
         "disableAutoCwd": "false",
         "cwd": "$(Build.SourcesDirectory)/DotNet-Core-Release-Tools",
         "failOnStandardError": "false"
