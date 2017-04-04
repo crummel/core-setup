@@ -316,11 +316,11 @@
     },
     "AzureAccessToken": {
       "value": null,
-			"isSecret": true
+      "isSecret": true
     },
     "VsoPassword": {
       "value": null,
-			"isSecret": true
+      "isSecret": true
     },
     "ReleaseToolsGitUrl": {
       "value": "https://dn-bot:$(VsoPassword)@devdiv.visualstudio.com/DevDiv/_git/DotNet-Core-Release-Tools"

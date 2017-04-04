@@ -74,25 +74,6 @@
     },
     {
       "enabled": true,
-      "continueOnError": true,
-      "alwaysRun": true,
-      "displayName": "Initialize tools",
-      "timeoutInMinutes": 0,
-      "task": {
-        "id": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
-        "versionSpec": "2.*",
-        "definitionType": "task"
-      },
-      "inputs": {
-        "scriptPath": "pkg/init-tools.sh",
-        "args": "",
-        "disableAutoCwd": "false",
-        "cwd": "",
-        "failOnStandardError": "false"
-      }
-    },
-    {
-      "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
       "displayName": "Shell Script msbuildrun.sh",
@@ -143,6 +124,25 @@
       "inputs": {
         "scriptPath": "build.sh",
         "args": "$(BuildArguments)",
+        "disableAutoCwd": "false",
+        "cwd": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": true,
+      "alwaysRun": true,
+      "displayName": "Initialize tools",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
+        "versionSpec": "2.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "scriptPath": "pkg/init-tools.sh",
+        "args": "",
         "disableAutoCwd": "false",
         "cwd": "",
         "failOnStandardError": "false"
@@ -290,11 +290,11 @@
     },
     "AzureAccessToken": {
       "value": null,
-			"isSecret": true
+      "isSecret": true
     },
     "VsoPassword": {
       "value": null,
-			"isSecret": true
+      "isSecret": true
     },
     "ReleaseToolsGitUrl": {
       "value": "https://dn-bot:$(VsoPassword)@devdiv.visualstudio.com/DevDiv/_git/DotNet-Core-Release-Tools"
